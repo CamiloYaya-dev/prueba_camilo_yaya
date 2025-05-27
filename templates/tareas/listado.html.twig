@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Tareas{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center">📋 Listado de Tareas del Usuario</h2>
+
+    {% if tareas is empty %}
+        <div class="alert alert-warning text-center">
+            <i class="bi bi-exclamation-triangle"></i> No hay tareas disponibles para este usuario.
+        </div>
+    {% else %}
+        <div class="table-responsive shadow rounded">
+            <table id="tabla-tareas" class="table table-hover align-middle table-bordered table-striped">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Duración</th>
+                        <th>Fecha</th>
+                        <th>Proyecto</th>
+                        <th>Activo</th>
+                        <th>Tarifa</th>
+                        <th>Creada</th>
+                        <th>Actualizada</th>
+                    </tr>
+                    <tfoot>
+                        <tr>
+                            {% for i in 0..9 %}
+                                <th><input type="text" data-column="{{ i }}" class="form-control form-control-sm" placeholder="Buscar" /></th>
+                            {% endfor %}
+                        </tr>
+                    </tfoot>
+                </thead>
+                <tbody>
+                    {% for tarea in tareas %}
+                        <tr>
+                            <td class="text-center">{{ tarea.id }}</td>
+                            <td>{{ tarea.descripcion }}</td>
+                            <td class="text-center">
+                                <span class="badge bg-{{ {
+                                    'to_do': 'secondary',
+                                    'in_progress': 'info',
+                                    'review': 'warning',
+                                    'waiting_deploy': 'primary',
+                                    'done': 'success'
+                                }[tarea.estado] ?? 'dark' }}">
+                                    {{ tarea.estado|replace({'_': ' '})|title }}
+                                </span>
+                            </td>
+                            <td class="text-end">{{ tarea.duracion }} min</td>
+                            <td class="text-nowrap">{{ tarea.fecha }}</td>
+                            <td>
+                                <strong>{{ tarea.proyecto.nombre }}</strong><br>
+                                <small class="text-muted">({{ tarea.proyecto.activo ? 'Activo' : 'Inactivo' }})</small>
+                            </td>
+                            <td class="text-center">
+                                {% if tarea.activo %}
+                                    <span class="badge bg-success">Sí</span>
+                                {% else %}
+                                    <span class="badge bg-danger">No</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-end">${{ tarea.tarifa|number_format(2, '.', ',') }}</td>
+                            <td class="text-nowrap">{{ tarea.createdAt }}</td>
+                            <td class="text-nowrap">{{ tarea.updatedAt }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
