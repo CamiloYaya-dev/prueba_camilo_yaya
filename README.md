@@ -1,6 +1,6 @@
 # 📄 Prueba Técnica Symfony - Time Manager
 
-![Vista de ejemplo](assets/captura.png)
+![Vista de ejemplo](assets/time_manager.png)
 
 Este proyecto corresponde a una prueba técnica en Symfony. Se trata de un sistema sencillo de gestión de tareas, usuarios y proyectos, donde un usuario puede estar asociado a múltiples proyectos con tarifas diferentes, y registrar tareas en cada uno de ellos.
 
