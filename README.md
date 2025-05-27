@@ -39,7 +39,7 @@ Este proyecto corresponde a una prueba técnica en Symfony. Se trata de un siste
 
 ### Paso 1: Clonar el repositorio
 ```bash
-git clone <repo-url>
+git clone https://github.com/CamiloYaya-dev/prueba_camilo_yaya
 cd prueba-camilo-yaya
 ```
 
@@ -66,6 +66,7 @@ Ejecutar el script SQL `datos_prueba.sql` ubicado en la raíz del proyecto sql/p
 ```bash
 mysql -u root -p nombreDeSuBaseDeDatos < prueba_camilo_yaya.sql o atravez de
 ```
+o atravez de la interfaz de phpmyadmin
 
 ### Paso 6: Iniciar servidor de desarrollo
 ```bash
